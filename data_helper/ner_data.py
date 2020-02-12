@@ -17,18 +17,13 @@ f.close()
 # 2. 提取question、triple和answer
 questions = [question for question in contents if 'question' in question]
 triples = [triple for triple in contents if 'triple' in triple]
-answers = [answer for answer in contents if 'answer' in answer]
 assert len(questions) == len(triples)
-assert len(triples) == len(answers)
 
 reg_q = r'(<question id=\d*>)\s(.*)'
 questions = [re.match(reg_q, question).group(2) for question in questions]
 reg_t = r'(<triple id=\d*>)\s(.*)'
 triples = [re.match(reg_t, triple).group(2) for triple in triples]
-reg_a = r'(<answer id=\d*>)\s(.*)'
-answers = [re.match(reg_a, answer).group(2) for answer in answers]
 assert len(questions) == len(triples)
-assert len(triples) == len(answers)
 
 # 3. BIO标注
 entities = [triple.split('|||')[0].strip() for triple in triples]
