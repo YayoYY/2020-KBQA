@@ -1,0 +1,2 @@
+class SIMModel(object):
+    pass

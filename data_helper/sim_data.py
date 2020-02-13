@@ -16,7 +16,7 @@ f = open(train_data_path, 'r')
 contents = f.readlines()
 f.close()
 
-# (2) 提取question、attribute、label
+# (2) 提取question、attribute
 questions = [question for question in contents if 'question' in question]
 reg_q = r'(<question id=\d*>)\s(.*)'
 questions = [re.match(reg_q, question).group(2) for question in questions]
@@ -37,7 +37,7 @@ for i, question in enumerate(questions[:13000]):
     pos_sample = '{0} {1}\n'.format(' '.join(pos_samples[i]), '1')
     neg_samples = ['{0} {1}'.format(' '.join(sample), '0') for sample in neg_samples]
     neg_samples = '\n'.join(neg_samples) + '\n'
-    f.write(pos_sample+neg_samples)
+    f.write(pos_sample + neg_samples)
 f.close()
 
 f = open(sim_dev_data_path, 'w')
