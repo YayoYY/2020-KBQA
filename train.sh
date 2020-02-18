@@ -1,2 +1,2 @@
-python train/ner.py \
-  --data_dir=data/NER \
+python train.py \
+  --data_dir=NER \
