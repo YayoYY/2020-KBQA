@@ -4,6 +4,7 @@ ner_helper.py
 @Author: You Yue
 @Reference: Macan (https://github.com/macanv/BERT-BiLSTM-CRF-NER)
 '''
+
 import sys
 sys.path.append("..") # bug修复：模块的导入从项目根目录开始
 
