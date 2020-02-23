@@ -13,7 +13,7 @@ def attribute_match():
 def online_kbqa():
     print('offline kbqa start...')
     model_ner = NERModel()
-    ans = model_ner.online_predict("我是邺有，你好啊你好啊！")
+    ans = model_ner.online_predict("我是邺有！你好啊你好啊！")
     print(ans)
 
 def offline_kbqa():
