@@ -44,8 +44,6 @@ class NERModel(object):
             "label_ids": [feature.label_ids],
         })["output"][0]
 
-
-
         with codecs.open(os.path.join(output_dir, 'label2id.pkl'), 'rb') as rf:
             label2id = pickle.load(rf)
             id2label = {value: key for key, value in label2id.items()}

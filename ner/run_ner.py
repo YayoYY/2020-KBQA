@@ -49,9 +49,6 @@ flags.DEFINE_string(
     "The vocab.txt path.")
 
 # 2. 训练参数
-# flags.DEFINE_boolean(
-#     "do_lower_case", "True",
-#     "Whether do lower case or not.")
 flags.DEFINE_integer(
     "max_seq_length", 128,
     "The maximum total input sequence length after tokenization.")

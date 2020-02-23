@@ -49,9 +49,9 @@ class BLSTM_CRF(object):
             # lstm input dropout rate i set 0.9 will get best score
             self.embedded_chars = tf.nn.dropout(self.embedded_chars, self.dropout_rate)
 
-        if crf_only:
+        if crf_only: # 一层crf
             logits = self.project_crf_layer(self.embedded_chars)
-        else:
+        else: # 一层bilstm + 一层crf
             # blstm
             lstm_output = self.blstm_layer(self.embedded_chars)
             # project

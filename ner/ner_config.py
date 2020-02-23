@@ -1,6 +1,6 @@
 '''
 ner_config.py
-ner_model的配置信息
+ner_model的配置信息，方便更改model_file
 @Author: You Yue
 '''
 

@@ -15,8 +15,8 @@ import collections
 
 import tensorflow as tf
 from tensorflow.contrib.layers.python.layers import initializers
-from bert import tokenization, modeling, optimization # bug修复：模块的导入从项目根目录开始
-from ner.lstm_crf_layer import BLSTM_CRF # bug修复：模块的导入从项目根目录开始
+from bert import tokenization, modeling, optimization # bug修复：模块的导入从项目根目录开始，lstm_crf_layer同理
+from ner.lstm_crf_layer import BLSTM_CRF
 
 class InputExample(object):
     """A single training/test example for simple sequence classification."""
