@@ -62,19 +62,18 @@ class DataProcessor(object):
         """Gets the list of labels for this data set."""
         raise NotImplementedError()
 
-# PROBLEM REMAIN：train1 train
 class NERProcesser(DataProcessor):
     """Processor for the MRPC data set (GLUE version)."""
 
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_data(os.path.join(data_dir, "train1.txt")), "train")
+            self._read_data(os.path.join(data_dir, "train.txt")), "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_data(os.path.join(data_dir, "dev1.txt")), "dev")
+            self._read_data(os.path.join(data_dir, "dev.txt")), "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
