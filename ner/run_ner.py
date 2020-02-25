@@ -22,7 +22,7 @@ FLAGS = flags.FLAGS
 # 1. 任务配置
 flags.DEFINE_string(
     "task", None,
-    "Task type, ner or sim.")
+    "Task name.")
 flags.DEFINE_boolean(
     "do_train", True,
     "Whether to run training.")
@@ -68,10 +68,10 @@ flags.DEFINE_float(
     "learning_rate", 1e-5,
     "The initial learning rate for Adam Optimizer.")
 flags.DEFINE_integer(
-    "batch_size", 64,
+    "batch_size", 8,
     "Batch size.")
 flags.DEFINE_integer(
-    "num_train_epochs", 10,
+    "num_train_epochs", 5,
     "Total number of training epochs to perform.")
 flags.DEFINE_float(
     "warmup_proportion", 0.1,
@@ -92,6 +92,7 @@ def main(_):
         os.mkdir(FLAGS.output_dir)
 
     bert_config = modeling.BertConfig.from_json_file(FLAGS.bert_config_file)
+
     if FLAGS.max_seq_length > bert_config.max_position_embeddings:
         raise ValueError(
             "Cannot use sequence length %d because the BERT model "
