@@ -17,6 +17,7 @@ import tensorflow as tf
 from tensorflow.contrib.layers.python.layers import initializers
 from bert import tokenization, modeling, optimization # bug修复：模块的导入从项目根目录开始，lstm_crf_layer同理
 from ner.lstm_crf_layer import BLSTM_CRF
+from ner import tf_metrics
 
 class InputExample(object):
     """A single training/test example for simple sequence classification."""
@@ -222,8 +223,17 @@ def model_fn_builder(bert_config, num_labels, init_checkpoint, learning_rate,
         elif mode == tf.estimator.ModeKeys.EVAL:
             # PROBLEM REMAIN: eval的评估指标
             def metric_fn(label_ids, pred_ids):
+
+                indices = [2, 3, 4]  # PROBLEM REMAIN: 与NERProcessor下标对应？
+                weight = tf.sequence_mask(args.max_seq_length)
+                precision = tf_metrics.precision(label_ids, pred_ids, num_labels, indices, weight)
+                recall = tf_metrics.recall(label_ids, pred_ids, num_labels, indices, weight)
+                f1 = tf_metrics.f1(label_ids, pred_ids, num_labels, indices, weight)
+
                 return {
-                    "eval_loss": tf.metrics.mean_squared_error(labels=label_ids, predictions=pred_ids)}
+                    "eval_precision": precision,
+                    "eval_recall": recall,
+                    "eval_f": f1}
 
             eval_metrics = metric_fn(label_ids, pred_ids)
             output_spec = tf.estimator.EstimatorSpec( # 必需参数：loss

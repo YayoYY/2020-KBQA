@@ -30,7 +30,7 @@ class NERModel(object):
         if os.path.exists(model_path):
             self.predict_fn = tf.contrib.predictor.from_saved_model(model_path)
 
-    def online_predict(self, question):
+    def predict(self, question):
 
         predict_example = InputExample("id", ' '.join(list(question)), ' '.join(['O']*len(question)))
         feature = convert_single_example(0, predict_example, self.label_list,

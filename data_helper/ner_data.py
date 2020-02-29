@@ -5,10 +5,7 @@ ner_data
 '''
 
 import re
-
-train_data_path = '../data/NLPCC2016KBQA/nlpcc-iccpol-2016.kbqa.training-data'
-ner_train_data_path = '../data/NER/train.txt'
-ner_dev_data_path = '../data/NER/dev.txt'
+from data_helper.data_config import *
 
 # 1. 读取训练数据
 f = open(train_data_path, 'r')

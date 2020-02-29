@@ -17,7 +17,7 @@ from sim.sim_helper import SimProcessor, InputExample, convert_single_example
 from sim.sim_config import *
 
 class SIMModel(object):
-    '''基于BERT的命名实体识别模型'''
+    '''基于BERT的文本相似度模型'''
 
     def __init__(self):
 

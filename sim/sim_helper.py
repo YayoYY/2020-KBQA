@@ -9,11 +9,9 @@ sys.path.append("..")
 
 import codecs
 import os
-import pickle
 import collections
 
 import tensorflow as tf
-from tensorflow.contrib.layers.python.layers import initializers
 from bert import tokenization, modeling, optimization
 
 class InputExample(object):
@@ -256,7 +254,7 @@ def model_fn_builder(bert_config, num_labels, init_checkpoint, learning_rate,
         else:
             output_spec = tf.estimator.EstimatorSpec(
               mode=mode,
-              predictions={"probabilities": probabilities})
+              predictions={"probabilities": probabilities}) # bug修复：源码中default的名字是output
 
         return output_spec
 

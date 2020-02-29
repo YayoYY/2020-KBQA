@@ -67,10 +67,10 @@ flags.DEFINE_float(
     "learning_rate", 1e-5,
     "The initial learning rate for Adam Optimizer.")
 flags.DEFINE_integer(
-    "batch_size", 8,
+    "batch_size", 64,
     "Batch size.")
 flags.DEFINE_integer(
-    "num_train_epochs", 5,
+    "num_train_epochs", 10,
     "Total number of training epochs to perform.")
 flags.DEFINE_float(
     "warmup_proportion", 0.1,

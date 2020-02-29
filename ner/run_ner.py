@@ -68,10 +68,10 @@ flags.DEFINE_float(
     "learning_rate", 1e-5,
     "The initial learning rate for Adam Optimizer.")
 flags.DEFINE_integer(
-    "batch_size", 8,
+    "batch_size", 64,
     "Batch size.")
 flags.DEFINE_integer(
-    "num_train_epochs", 5,
+    "num_train_epochs", 10,
     "Total number of training epochs to perform.")
 flags.DEFINE_float(
     "warmup_proportion", 0.1,
@@ -137,10 +137,9 @@ def main(_):
         num_warmup_steps=num_warmup_steps,
         args=FLAGS)
 
-    estimator = tf.estimator.Estimator(
-        model_fn,
-        params={'batch_size': FLAGS.batch_size},
-        config=run_config)
+    estimator = tf.estimator.Estimator(model_fn,
+                                       params={'batch_size': FLAGS.batch_size},
+                                       config=run_config)
 
     # 3. 训练、验证、预测
     if FLAGS.do_train:
@@ -225,6 +224,7 @@ def main(_):
 
         output_predict_file = os.path.join(FLAGS.output_dir, "label_test.txt")
 
+        # PROBLEM REMAIN: 解码方式？
         def result_to_pair(writer):
             for predict_line, prediction in zip(predict_examples, result):
                 idx = 0
